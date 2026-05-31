@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-mode="rich">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" data-i18n="meta.description" content="Felipe Santos - Cientista de Dados com foco em NLP, IA Generativa e Machine Learning." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <title data-i18n="meta.title">Felipe Santos - Cientista de Dados</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- JSON-LD: structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Felipe Santos Gomes da Silva",
+    "givenName": "Felipe",
+    "familyName": "Santos Gomes da Silva",
+    "jobTitle": "Data Scientist",
+    "description": "Data Scientist focused on NLP, Generative AI (RAG) and Machine Learning.",
+    "url": "https://github.com/Felipe8959",
+    "sameAs": [
+      "https://github.com/Felipe8959",
+      "https://www.linkedin.com/in/felipe8959/"
+    ],
+    "email": "felipe.santos369@hotmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Osasco", "addressRegion": "SP", "addressCountry": "BR" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "UNINOVE" },
+    "knowsAbout": ["Python", "PySpark", "Databricks", "NLP", "RAG", "LLM", "Machine Learning", "Vector Search", "Power BI"],
+    "worksFor": { "@type": "Organization", "name": "Banco Bradesco" }
+  }
+  </script>
+</head>
+<body>
+  <!-- Loading screen (once per session) -->
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true">
+    <div class="loading-inner">
+      <span class="loading-name">FELIPE SANTOS</span>
+      <span class="loading-bar"></span>
+    </div>
+  </div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Network/scatter background canvas -->
+  <canvas class="network-bg" id="networkBg" aria-hidden="true"></canvas>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <a href="#content" class="skip-link" data-i18n="skipLink">Pular para o conteúdo</a>
+
+  <!-- ============ TOP TOOLBAR (fixed) ============ -->
+  <div class="top-toolbar" role="toolbar" aria-label="Preferences">
+    <!-- 1. Currículo -->
+    <a href="assets/Felipe_Santos_Curriculo.pdf" target="_blank" rel="noopener"
+       class="tb-icon-btn" aria-label="Currículo">
+      <i class="bi bi-file-earmark-pdf-fill"></i>
+      <span class="tb-label" data-i18n="actions.resume">Currículo</span>
+    </a>
+
+    <!-- 2. Labs -->
+    <button type="button" class="tb-icon-btn labs-toggle" id="labsToggle" aria-label="Labs">
+      <svg class="icon-flask" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 2.5h6"/>
+        <path d="M10 2.5v7L5.2 17.6a2 2 0 0 0 1.7 3.1h10.2a2 2 0 0 0 1.7-3.1L14 9.5v-7"/>
+        <path d="M7.8 14.2h8.4"/>
+      </svg>
+      <span class="tb-label" data-i18n="labs.title">Labs</span>
+    </button>
+
+    <!-- 3. Tema -->
+    <button type="button" class="theme-toggle tb-icon-btn" id="themeToggle" aria-label="Toggle theme">
+      <i class="bi bi-sun-fill icon-light"></i>
+      <i class="bi bi-moon-fill icon-dark"></i>
+      <span class="tb-label" data-i18n="actions.theme">Tema</span>
+    </button>
+
+    <!-- 4. Idioma -->
+    <button type="button" class="tb-icon-btn lang-toggle" id="langToggle" aria-label="Toggle language">
+      <i class="bi bi-translate"></i>
+      <span class="tb-label" id="langLabel">PT</span>
+    </button>
+  </div>
+
+  <div class="container-xxl main-wrap">
+    <div class="row g-0">
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="col-lg-5 sidebar">
+        <div class="sidebar-inner">
+          <header>
+            <h1 class="hero-name">Felipe Santos</h1>
+
+            <!-- Terminal-style info typer -->
+            <div class="code-typer hero-typer" aria-hidden="true">
+              <span class="ct-prompt">&gt;&gt;&gt;</span>
+              <span class="ct-text" id="roleTyper"></span>
+              <span class="ct-caret">_</span>
+            </div>
+
+            <p class="hero-tagline" data-i18n="hero.tagline">
+              Transformo grande volume de dados em soluções estratégicas e informações que direcionam o futuro dos negócios.
+            </p>
+          </header>
+
+          <nav class="side-nav" aria-label="In-page navigation">
+            <ul>
+              <li><a href="#about" class="nav-link" data-nav="about"><span class="nav-indicator"></span><span data-i18n="nav.about">Sobre</span></a></li>
+              <li><a href="#experience" class="nav-link" data-nav="experience"><span class="nav-indicator"></span><span data-i18n="nav.experience">Experiência</span></a></li>
+              <!-- <li><a href="#projects" class="nav-link" data-nav="projects"><span class="nav-indicator"></span><span data-i18n="nav.projects">Projetos</span></a></li> -->
+              <li><a href="#skills" class="nav-link" data-nav="skills"><span class="nav-indicator"></span><span data-i18n="nav.skills">Skills</span></a></li>
+              <li><a href="#contact" class="nav-link" data-nav="contact"><span class="nav-indicator"></span><span data-i18n="nav.contact">Contato</span></a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </aside>
+
+      <!-- ============ CONTENT ============ -->
+      <main id="content" class="col-lg-7 content">
+
+        <!-- ABOUT -->
+        <section id="about" class="section" aria-labelledby="about-h">
+          <div class="section-sticky-header">
+            <h2 id="about-h" class="section-title-mobile" data-i18n="nav.about">Sobre</h2>
+          </div>
+
+          <div class="prose">
+            <p data-i18n="about.p1">
+              Cientista de dados com formação em <strong>Ciência da Computação</strong> e foco no desenvolvimento de soluções analíticas completas. Tenho orgulho de transformar dados brutos e jornadas complexas em inteligência de negócio e eficiência operacional. Meu trabalho se destaca na intersecção entre a <strong>precisão estatística</strong> e a <strong>engenharia de dados</strong>, onde modelos preditivos encontram pipelines escaláveis para antecipar cenários e resolver problemas reais.
+            </p>
+            <p data-i18n="about.p2">
+              Atualmente, faço parte do departamento de <strong>Ouvidoria do Banco Bradesco</strong>, onde atuo no desenvolvimento de inteligência de dados para entender a jornada do cliente, otimizar processos e ajudar os times estratégicos a atuarem de forma preditiva.
+            </p>
+            <p data-i18n="about.p3">
+              Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href="#" data-action="open-labs" class="about-labs-link">Labs<i class="bi bi-arrow-right"></i></a>.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section" aria-labelledby="exp-h">
+          <div class="section-sticky-header">
+            <h2 id="exp-h" class="section-title-mobile" data-i18n="nav.experience">Experiência</h2>
+          </div>
+
+          <ol class="cards">
+            <!-- ROLE 1 - Jr. (current) -->
+            <li class="card-item">
+              <div class="card-side">
+                <div class="card-logo">
+                  <img src="assets/bradesco.png" alt="Banco Bradesco" />
+                </div>
+                <span class="card-period" data-i18n="exp.r1.period">JAN 2026 - ATUAL</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://www.bradesco.com.br/" target="_blank" rel="noopener">
+                    <span data-i18n="exp.r1.role">Analista de Informações Gerenciais Jr.</span>
+                    <span class="card-sub"> · Banco Bradesco</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="exp.r1.desc">
+                  Projetos com IA Generativa, estudos mais aprofundados e analytics estratégicos para Ouvidoria, com reporte para outros departamentos.
+                </p>
+                <ul class="bullets">
+                  <li><strong data-i18n="exp.proj1.t">Instância Zero</strong> - <span data-i18n="exp.proj1.d">pipeline em PySpark/Databricks cruzando URA, totens de agências e canais digitais (BIA/chat) com a base de reclamações, reconstruindo a jornada do cliente até o ponto de reclamação. Entrega: dashboard executivo alimentado por job diário automatizado.</span></li>
+                  <li><strong data-i18n="exp.proj2.t">Análise de minutas regulatórias com IA Generativa (RAG)</strong> - <span data-i18n="exp.proj2.d">web scraping de ~12 mil normativos do BACEN, ingestão no Databricks, embeddings multilingual e Vector Search para recuperar as 5 normas mais relevantes por minuta. Agente LLM avalia conformidade, gera recomendações e devolve a minuta corrigida.</span></li>
+                </ul>
+                <ul class="tag-list">
+                  <li>Databricks</li><li>Lakeflow Jobs</li><li>Multithreading</li>
+                  <li>Vector Search</li><li>RAG</li><li>IA Gen</li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- ROLE 2 - Assistente -->
+            <li class="card-item">
+              <div class="card-side">
+                <div class="card-logo">
+                  <img src="assets/bradesco.png" alt="Banco Bradesco" />
+                </div>
+                <span class="card-period" data-i18n="exp.r2.period">DEZ 2024 - DEZ 2025</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://www.bradesco.com.br/" target="_blank" rel="noopener">
+                    <span data-i18n="exp.r2.role">Analista Assistente</span>
+                    <span class="card-sub"> · Banco Bradesco</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="exp.r2.desc">
+                  Modelagem em NLP não supervisionada e engenharia de dados sobre arquitetura Medallion, com atualização incremental e ingestão automatizada de dados regulatórios.
+                </p>
+                <ul class="bullets">
+                  <li><strong data-i18n="exp.proj3.t">Detecção de influencers</strong> - <span data-i18n="exp.proj3.d">modelagem não supervisionada com TF-IDF + similaridade de cosseno e DBSCAN, com treino inicial em chunks e atualização incremental via artefatos versionados.</span></li>
+                  <li><strong data-i18n="exp.proj6.t">Fluxos automatizados</strong> - <span data-i18n="exp.proj6.d">pipelines em arquitetura Medallion (bronze/silver/gold) no Databricks; automação da ingestão de dados regulatórios do BACEN.</span></li>
+                </ul>
+                <ul class="tag-list">
+                  <li>Databricks</li><li>SQL</li><li>PySpark</li>
+                  <li>Scikit-Learn</li><li>Embeddings</li><li>Clustering</li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- ROLE 3 - Estagiário -->
+            <li class="card-item">
+              <div class="card-side">
+                <div class="card-logo">
+                  <img src="assets/bradesco.png" alt="Banco Bradesco" />
+                </div>
+                <span class="card-period" data-i18n="exp.r3.period">FEV 2024 - DEZ 2024</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://www.bradesco.com.br/" target="_blank" rel="noopener">
+                    <span data-i18n="exp.r3.role">Estagiário</span>
+                    <span class="card-sub"> · Banco Bradesco</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="exp.r3.desc">
+                  Início da carreira em dados: classificação supervisionada e estatística inferencial aplicada a textos de reclamações.
+                </p>
+                <ul class="bullets">
+                  <li><strong data-i18n="exp.proj4.t">Classificação automática de temas Febraban</strong> - <span data-i18n="exp.proj4.d">Random Forest mapeando temas Febraban para a categorização interna, com <strong>acurácia de 97%</strong>.</span></li>
+                  <li><strong data-i18n="exp.proj5.t">Análise estatística de reclamações BACEN</strong> - <span data-i18n="exp.proj5.d">qui-quadrado sobre textos procedentes vs. improcedentes para identificar unigramas e bigramas mais associados à procedência.</span></li>
+                  <li><strong data-i18n="exp.proj7.t">Automações</strong> - <span data-i18n="exp.proj7.d">criação e manutenção de scripts em Python utilizados por diversas equipes (distribuição automática de demandas, envio de e-mails, web scraping e outras rotinas internas).</span></li>
+                </ul>
+                <ul class="tag-list">
+                  <li>Python</li><li>Scikit-Learn</li><li>NLP</li>
+                  <li>Web Scraping</li><li>Excel</li><li>Microstrategy</li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- ROLE 4 - Iten -->
+            <li class="card-item">
+              <div class="card-side">
+                <div class="card-logo card-logo--text">ITEN</div>
+                <!-- <div class="card-logo">
+                  <img src="assets/iten.png" alt="Iten - Instituto Tecnológico de Ensaios" />
+                </div> -->
+                <span class="card-period" data-i18n="exp.r4.period">FEV 2020 - FEV 2024</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <span>
+                    <span data-i18n="exp.r4.role">Assistente de TI</span>
+                    <span class="card-sub" data-i18n="exp.r4.company"> · Iten - Instituto Tecnológico de Ensaios</span>
+                  </span>
+                </h3>
+                <p class="card-desc" data-i18n="exp.r4.desc">
+                  Automação de ensaios e geração de relatórios em conformidade com normas NBR, ISO e IEC. Cálculos de incerteza de medição assegurando padronização e consistência dos resultados, com foco em reduzir retrabalho, acelerar a emissão de laudos e diminuir erros nas informações.
+                </p>
+                <ul class="tag-list">
+                  <li>VBA</li><li>Microsoft Excel</li>
+                  <li data-i18n="exp.r4.tag.norms">Normas NBR / ISO / IEC</li>
+                  <li data-i18n="exp.r4.tag.metro">Metrologia</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+
+          <div class="section-footer">
+            <a href="assets/Felipe_Santos_Curriculo.pdf" target="_blank" rel="noopener" class="link-arrow">
+              <span data-i18n="actions.viewFullResume">Ver currículo completo</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </section>
+
+        <!-- PROJECTS
+        <section id="projects" class="section" aria-labelledby="proj-h">
+          <div class="section-sticky-header">
+            <h2 id="proj-h" class="section-title-mobile" data-i18n="nav.projects">Projetos</h2>
+          </div>
+
+          <ul class="cards">
+            <li class="card-item">
+              <div class="card-thumb"><i class="bi bi-robot"></i></div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://github.com/Felipe8959" target="_blank" rel="noopener">
+                    <span data-i18n="proj.p1.t">Agente LLM para análise regulatória (RAG)</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="proj.p1.d">
+                  Pipeline completo de RAG sobre ~12k normativos do BACEN: scraping, embeddings multilingual, Vector Search e agente LLM que avalia conformidade e devolve a minuta corrigida com destaques.
+                </p>
+                <ul class="tag-list">
+                  <li>RAG</li><li>LLM</li><li>Vector Search</li><li>Databricks</li><li>Python</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="card-item">
+              <div class="card-thumb"><i class="bi bi-diagram-3"></i></div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://github.com/Felipe8959" target="_blank" rel="noopener">
+                    <span data-i18n="proj.p2.t">Instância Zero - jornada do cliente</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="proj.p2.d">
+                  Reconstrução da jornada do cliente cruzando URA, totens de agências e canais digitais com reclamações. Pipeline diário em PySpark/Databricks entregando dashboard executivo em Power BI.
+                </p>
+                <ul class="tag-list">
+                  <li>PySpark</li><li>Medallion</li><li>Power BI</li><li>Azure</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="card-item">
+              <div class="card-thumb"><i class="bi bi-tags"></i></div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://github.com/Felipe8959" target="_blank" rel="noopener">
+                    <span data-i18n="proj.p3.t">Classificação de temas Febraban (97% acc)</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="proj.p3.d">
+                  Modelo de Random Forest mapeando os temas Febraban para a taxonomia interna do banco, alcançando 97% de acurácia em produção e reduzindo a curadoria manual.
+                </p>
+                <ul class="tag-list">
+                  <li>Scikit-Learn</li><li>Random Forest</li><li>NLP</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="card-item">
+              <div class="card-thumb"><i class="bi bi-broadcast-pin"></i></div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a href="https://github.com/Felipe8959" target="_blank" rel="noopener">
+                    <span data-i18n="proj.p4.t">Detecção de influencers (TF-IDF + DBSCAN)</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
+                </h3>
+                <p class="card-desc" data-i18n="proj.p4.d">
+                  Modelagem não supervisionada com TF-IDF, similaridade de cosseno e DBSCAN, com atualização incremental versionada e visualização em dashboard dedicado.
+                </p>
+                <ul class="tag-list">
+                  <li>TF-IDF</li><li>DBSCAN</li><li>Unsupervised</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+          <div class="section-footer">
+            <a href="https://github.com/Felipe8959" target="_blank" rel="noopener" class="link-arrow">
+              <span data-i18n="proj.more">Ver mais projetos no GitHub</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </section> -->
+
+        <!-- SKILLS -->
+        <section id="skills" class="section" aria-labelledby="sk-h">
+          <div class="section-sticky-header">
+            <h2 id="sk-h" class="section-title-mobile" data-i18n="nav.skills">Skills</h2>
+          </div>
+
+          <!-- Stack showcase — daily tools above the skills grid -->
+          <div class="stack-showcase" aria-label="Stack do dia a dia">
+            <p class="stack-showcase-title" data-i18n="stack.title">Stack do dia a dia</p>
+            <div class="stack-main">
+              <div class="stack-chip" title="Databricks">
+                <img src="https://cdn.simpleicons.org/databricks" alt="" onerror="this.style.display='none'" />
+                <span>Databricks</span>
+              </div>
+              <div class="stack-chip" title="SQL">
+                <i class="bi bi-database-fill" aria-hidden="true"></i>
+                <span>SQL</span>
+              </div>
+              <div class="stack-chip" title="MLflow">
+                <img src="https://cdn.simpleicons.org/mlflow" alt="" onerror="this.style.display='none'" />
+                <span>MLflow</span>
+              </div>
+              <div class="stack-chip" title="H2O.ai">
+                <i class="bi bi-droplet-fill" aria-hidden="true"></i>
+                <span>H2O.ai</span>
+              </div>
+              <div class="stack-chip stack-chip--featured" title="Python">
+                <img src="https://cdn.simpleicons.org/python" alt="" onerror="this.style.display='none'" />
+                <span>Python</span>
+              </div>
+            </div>
+
+            <div class="stack-python">
+              <span class="stack-python-label" data-i18n="stack.pyEco">Ecossistema Python:</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/scikitlearn" alt="" onerror="this.style.display='none'" />scikit-learn</span>
+              <span class="stack-pill"><i class="bi bi-graph-up" aria-hidden="true"></i>matplotlib</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/numpy" alt="" onerror="this.style.display='none'" />NumPy</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/pandas" alt="" onerror="this.style.display='none'" />pandas</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/langchain" alt="" onerror="this.style.display='none'" />LangChain</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/streamlit" alt="" onerror="this.style.display='none'" />Streamlit</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-block">
+              <h4 data-i18n="skills.langs">Linguagens &amp; libs</h4>
+              <ul class="tag-list">
+                <li>Python</li><li>SQL</li><li>PySpark</li><li>Scikit-Learn</li><li>Pandas</li><li>NumPy</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <h4 data-i18n="skills.ml">Machine Learning</h4>
+              <ul class="tag-list">
+                <li>Random Forest</li><li>Regressão Linear/Logística</li><li>K-Means</li><li>DBSCAN</li>
+                <li data-i18n="skills.ml.fe">Feature Engineering</li>
+                <li data-i18n="skills.ml.cv">Validação Cruzada</li>
+                <li data-i18n="skills.ml.tune">Tuning de Hiperparâmetros</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <h4>NLP &amp; GenAI</h4>
+              <ul class="tag-list">
+                <li>TF-IDF</li>
+                <li data-i18n="skills.nlp.emb">Embeddings Multilingual</li>
+                <li data-i18n="skills.nlp.cos">Similaridade de Cosseno</li>
+                <li>Vector Search</li><li>RAG</li>
+                <li data-i18n="skills.nlp.agents">Agentes LLM</li>
+                <li data-i18n="skills.nlp.scrape">Web Scraping</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <h4 data-i18n="skills.stats">Estatística</h4>
+              <ul class="tag-list">
+                <li data-i18n="skills.stats.ht">Testes de Hipóteses</li>
+                <li>Qui-quadrado</li><li>p-valor</li>
+                <li data-i18n="skills.stats.corr">Correlação (Pearson)</li>
+                <li data-i18n="skills.stats.ts">Séries Temporais</li>
+              </ul>
+            </div>
+            <div class="skill-block">
+              <h4 data-i18n="skills.platforms">Plataformas</h4>
+              <ul class="tag-list">
+                <li>Databricks</li><li>Vector Search</li><li>Databricks Jobs</li>
+                <li>Azure</li><li>Power BI</li><li>H2O.ai (AutoML)</li>
+                <li data-i18n="skills.platforms.excel">Excel Avançado</li>
+              </ul>
+            </div>
+            <div class="skill-block cert-block">
+              <h4 data-i18n="skills.certs">Certificações</h4>
+              <div class="cert-list">
+                <a class="cert-badge"
+                   href="https://learn.microsoft.com/api/credentials/share/pt-br/FelipeSantos-7615/205C08F78353B5D0?sharingId=B856CB7FAFCC5873"
+                   target="_blank" rel="noopener"
+                   aria-label="Verify AZ-900 — Microsoft Azure Fundamentals">
+                  <img src="https://learn.microsoft.com/media/learn/certification/badges/azure-fundamentals-600x600.svg"
+                       alt="" loading="lazy"
+                       onerror="this.style.display='none'" />
+                  <div class="cert-meta">
+                    <strong>AZ-900</strong>
+                    <span>Azure Fundamentals</span>
+                  </div>
+                  <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                </a>
+                <a class="cert-badge"
+                   href="https://learn.microsoft.com/api/credentials/share/pt-br/FelipeSantos-7615/3E6D8C8041F35F27?sharingId=B856CB7FAFCC5873"
+                   target="_blank" rel="noopener"
+                   aria-label="Verify DP-900 — Azure Data Fundamentals">
+                  <img src="https://learn.microsoft.com/media/learn/certification/badges/azure-data-fundamentals-600x600.svg"
+                       alt="" loading="lazy"
+                       onerror="this.style.display='none'" />
+                  <div class="cert-meta">
+                    <strong>DP-900</strong>
+                    <span>Azure Data Fundamentals</span>
+                  </div>
+                  <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section section-contact" aria-labelledby="ct-h">
+          <div class="section-sticky-header">
+            <h2 id="ct-h" class="section-title-mobile" data-i18n="nav.contact">Contato</h2>
+          </div>
+
+          <div class="contact-box">
+            <h3 data-i18n="contact.title">Vamos conversar?</h3>
+            <p data-i18n="contact.body">
+              Estou aberto a novas oportunidades no universo dos dados. Se você tem um projeto interessante ou só quer trocar uma ideia, entre em contato.
+            </p>
+
+            <ul class="contact-socials" aria-label="Social">
+              <li><a href="https://github.com/Felipe8959" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="bi bi-github"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/felipe8959/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="bi bi-linkedin"></i></a></li>
+              <li><a href="mailto:felipe.santos369@hotmail.com" aria-label="Email" title="felipe.santos369@hotmail.com"><i class="bi bi-envelope"></i></a></li>
+              <li><a href="https://wa.me/5511945449450" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp"></i></a></li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ LABS MODAL ============ -->
+  <div class="labs-modal" id="labsModal" hidden aria-hidden="true">
+    <div class="labs-backdrop" data-labs-close></div>
+    <div class="labs-dialog" role="dialog" aria-modal="true" aria-labelledby="labs-title">
+      <header class="labs-header">
+        <div class="labs-title-wrap">
+          <svg class="icon-flask" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 2.5h6"/>
+            <path d="M10 2.5v7L5.2 17.6a2 2 0 0 0 1.7 3.1h10.2a2 2 0 0 0 1.7-3.1L14 9.5v-7"/>
+            <path d="M7.8 14.2h8.4"/>
+          </svg>
+          <h2 id="labs-title" data-i18n="labs.title">Labs</h2>
+          <span class="labs-subtitle" data-i18n="labs.subtitle">Mini-demos client-side</span>
+        </div>
+        <button type="button" class="labs-close tb-icon-btn" data-labs-close aria-label="Fechar">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </header>
+
+      <div class="labs-carousel">
+        <button type="button" class="labs-nav labs-prev" aria-label="Previous">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="labs-viewport">
+          <div class="labs-slides">
+
+            <!-- 1. NLP -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.nlp.title">Análise de texto em tempo real</h3>
+                <span class="lab-tag">NLP · TF-IDF · n-gramas</span>
+              </div>
+              <textarea id="nlpInput" rows="3"
+                        data-i18n-attr-placeholder="lab.nlp.placeholder"
+                        placeholder="Cole ou digite um texto aqui"></textarea>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="nlpTokens">0</strong><span data-i18n="lab.nlp.m1">tokens</span></div>
+                <div class="lab-metric"><strong id="nlpVocab">0</strong><span data-i18n="lab.nlp.m2">vocabulário único</span></div>
+                <div class="lab-metric"><strong id="nlpSents">0</strong><span data-i18n="lab.nlp.m3">sentenças</span></div>
+              </div>
+              <div class="lab-cols">
+                <div>
+                  <h4 data-i18n="lab.nlp.bigrams">Top bigramas</h4>
+                  <ul id="nlpNgrams" class="lab-ranklist"><li class="empty">—</li></ul>
+                </div>
+                <div>
+                  <h4 data-i18n="lab.nlp.tfidf">Top termos por TF-IDF</h4>
+                  <ul id="nlpTfidf" class="lab-ranklist"><li class="empty">—</li></ul>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. Cosine similarity -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.cos.title">Similaridade entre frases</h3>
+                <span class="lab-tag">Bag-of-Words · Cosseno</span>
+              </div>
+              <input id="cosA" type="text" class="lab-input"
+                     data-i18n-attr-placeholder="lab.cos.ph1" placeholder="Frase 1" />
+              <input id="cosB" type="text" class="lab-input"
+                     data-i18n-attr-placeholder="lab.cos.ph2" placeholder="Frase 2" />
+              <div class="cos-bar"><div class="cos-fill" id="cosFill"></div></div>
+              <p class="cos-score-line">
+                <span data-i18n="lab.cos.score">Similaridade</span>:
+                <strong id="cosScore">0%</strong>
+              </p>
+            </article>
+
+            <!-- 3. Linear regression -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.reg.title">Regressão linear (OLS)</h3>
+                <span class="lab-tag">Estatística · y = β₀ + β₁x</span>
+              </div>
+              <p class="lab-hint" data-i18n="lab.reg.hint">
+                Clique no gráfico para adicionar pontos. Clique em cima de um ponto para remover.
+              </p>
+              <div class="labs-chart labs-chart--clickable"><canvas id="regCanvas"></canvas></div>
+              <div class="lab-actions">
+                <button type="button" class="lab-btn" id="regDemo">
+                  <i class="bi bi-stars"></i>
+                  <span data-i18n="lab.reg.demo">Exemplo</span>
+                </button>
+                <button type="button" class="lab-btn" id="regClear">
+                  <i class="bi bi-eraser"></i>
+                  <span data-i18n="lab.reg.clear">Limpar</span>
+                </button>
+                <span class="lab-counter" id="regCount">0 pts</span>
+              </div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="regSlope">—</strong><span>β₁ (slope)</span></div>
+                <div class="lab-metric"><strong id="regIntercept">—</strong><span>β₀ (intercept)</span></div>
+                <div class="lab-metric"><strong id="regR2">—</strong><span>R²</span></div>
+              </div>
+            </article>
+
+            <!-- 4. Pearson correlation -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.corr.title">Correlação de Pearson</h3>
+                <span class="lab-tag">Estatística · r</span>
+              </div>
+              <label class="lab-label">Série X</label>
+              <input id="corrX" type="text" class="lab-input" placeholder="1, 2, 3, 4, 5" />
+              <label class="lab-label">Série Y</label>
+              <input id="corrY" type="text" class="lab-input" placeholder="2, 4, 5, 4, 5" />
+              <div class="cos-bar"><div class="cos-fill" id="corrFill"></div></div>
+              <p class="cos-score-line">
+                r = <strong id="corrR">—</strong> · <span id="corrLabel">—</span>
+              </p>
+            </article>
+
+            <!-- 5. t-test -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.tt.title">Teste t (p-valor)</h3>
+                <span class="lab-tag">Welch · two-sided</span>
+              </div>
+              <label class="lab-label" data-i18n="lab.tt.lblA">Amostra A</label>
+              <input id="ttA" type="text" class="lab-input" placeholder="5.1, 4.9, 4.7, 5.0, 5.2" />
+              <label class="lab-label" data-i18n="lab.tt.lblB">Amostra B</label>
+              <input id="ttB" type="text" class="lab-input" placeholder="4.6, 4.8, 5.0, 4.9, 4.7" />
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="ttT">—</strong><span>t</span></div>
+                <div class="lab-metric"><strong id="ttDF">—</strong><span>df</span></div>
+                <div class="lab-metric"><strong id="ttP">—</strong><span>p-valor</span></div>
+              </div>
+              <p class="cos-score-line"><span id="ttSig">—</span></p>
+            </article>
+
+            <!-- 6. A/B test -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.ab.title">Teste A/B</h3>
+                <span class="lab-tag">Two-proportion z-test</span>
+              </div>
+              <div class="ab-grid">
+                <div>
+                  <label class="lab-label" data-i18n="lab.ab.varA">Variante A</label>
+                  <input id="abVA" type="number" class="lab-input" value="1000" min="1" />
+                  <input id="abCA" type="number" class="lab-input" value="100" min="0"
+                         data-i18n-attr-placeholder="lab.ab.conv" placeholder="conversões" />
+                </div>
+                <div>
+                  <label class="lab-label" data-i18n="lab.ab.varB">Variante B</label>
+                  <input id="abVB" type="number" class="lab-input" value="1000" min="1" />
+                  <input id="abCB" type="number" class="lab-input" value="125" min="0"
+                         data-i18n-attr-placeholder="lab.ab.conv" placeholder="conversões" />
+                </div>
+              </div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="abLift">—</strong><span data-i18n="lab.ab.lift">lift B vs A</span></div>
+                <div class="lab-metric"><strong id="abZ">—</strong><span>z</span></div>
+                <div class="lab-metric"><strong id="abP">—</strong><span>p-valor</span></div>
+              </div>
+              <p class="cos-score-line"><span id="abSig">—</span></p>
+            </article>
+
+            <!-- 7. Confusion Matrix -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.cm.title">Matriz de confusão</h3>
+                <span class="lab-tag">Classificação · Métricas</span>
+              </div>
+              <p class="lab-hint" data-i18n="lab.cm.hint">Ajuste TP/FP/TN/FN e veja accuracy, precision, recall e F1 em tempo real.</p>
+              <div class="cm-wrapper">
+                <div class="cm-axis-top">
+                  <span></span>
+                  <span class="cm-axis-label" data-i18n="lab.cm.predicted">Previsto</span>
+                </div>
+                <div class="cm-grid-wrap">
+                  <div class="cm-axis-left">
+                    <span class="cm-axis-label cm-axis-vert" data-i18n="lab.cm.actual">Real</span>
+                  </div>
+                  <div class="cm-headers">
+                    <span class="cm-header"><span data-i18n="lab.cm.neg">Negativo</span></span>
+                    <span class="cm-header"><span data-i18n="lab.cm.pos">Positivo</span></span>
+                  </div>
+                  <div class="cm-row-header"><span data-i18n="lab.cm.neg">Negativo</span></div>
+                  <div class="cm-grid">
+                    <div class="cm-cell cm-tn"><input type="number" id="cmTN" value="80" min="0"><label>TN</label></div>
+                    <div class="cm-cell cm-fp"><input type="number" id="cmFP" value="10" min="0"><label>FP</label></div>
+                  </div>
+                  <div class="cm-row-header"><span data-i18n="lab.cm.pos">Positivo</span></div>
+                  <div class="cm-grid">
+                    <div class="cm-cell cm-fn"><input type="number" id="cmFN" value="5" min="0"><label>FN</label></div>
+                    <div class="cm-cell cm-tp"><input type="number" id="cmTP" value="35" min="0"><label>TP</label></div>
+                  </div>
+                </div>
+              </div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="cmAcc">—</strong><span>Accuracy</span></div>
+                <div class="lab-metric"><strong id="cmPrec">—</strong><span>Precision</span></div>
+                <div class="lab-metric"><strong id="cmRec">—</strong><span>Recall</span></div>
+                <div class="lab-metric"><strong id="cmF1">—</strong><span>F1</span></div>
+              </div>
+            </article>
+
+            <!-- 8. K-Means visual -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.km.title">K-Means visual</h3>
+                <span class="lab-tag">Clustering · Lloyd's</span>
+              </div>
+              <p class="lab-hint" data-i18n="lab.km.hint">Clique no gráfico para adicionar pontos. Escolha K e rode o algoritmo.</p>
+              <div class="labs-chart labs-chart--clickable"><canvas id="kmCanvas"></canvas></div>
+              <div class="lab-actions">
+                <button type="button" class="lab-btn" id="kmRun">
+                  <i class="bi bi-play-fill"></i>
+                  <span data-i18n="lab.km.run">Rodar</span>
+                </button>
+                <button type="button" class="lab-btn" id="kmRandom">
+                  <i class="bi bi-shuffle"></i>
+                  <span data-i18n="lab.km.random">Aleatório</span>
+                </button>
+                <button type="button" class="lab-btn" id="kmClear">
+                  <i class="bi bi-eraser"></i>
+                  <span data-i18n="lab.km.clear">Limpar</span>
+                </button>
+                <label class="km-k-label">K=
+                  <input type="number" id="kmK" value="3" min="2" max="6" />
+                </label>
+              </div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="kmPts">0</strong><span data-i18n="lab.km.pts">pontos</span></div>
+                <div class="lab-metric"><strong id="kmIter">0</strong><span data-i18n="lab.km.iter">iterações</span></div>
+                <div class="lab-metric"><strong id="kmIner">—</strong><span data-i18n="lab.km.iner">inércia</span></div>
+              </div>
+            </article>
+
+            <!-- 9. Sentiment analysis -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.sa.title">Análise de sentimento</h3>
+                <span class="lab-tag">Lexicon · PT/EN</span>
+              </div>
+              <p class="lab-hint" data-i18n="lab.sa.hint">Cole uma frase. Palavras positivas em verde, negativas em vermelho.</p>
+              <textarea id="saInput" rows="3"
+                        data-i18n-attr-placeholder="lab.sa.placeholder"
+                        placeholder="Adorei o atendimento! Foi rápido e eficiente."></textarea>
+              <div class="sa-highlight" id="saHighlight"></div>
+              <div class="lab-metrics">
+                <div class="lab-metric"><strong id="saPos">0</strong><span data-i18n="lab.sa.pos">palavras positivas</span></div>
+                <div class="lab-metric"><strong id="saNeg">0</strong><span data-i18n="lab.sa.neg">palavras negativas</span></div>
+                <div class="lab-metric"><strong id="saScore">—</strong><span data-i18n="lab.sa.label">sentimento</span></div>
+              </div>
+              <div class="cos-bar"><div class="cos-fill" id="saFill"></div></div>
+            </article>
+
+            <!-- 10. Bayes Theorem -->
+            <article class="labs-slide">
+              <div class="labs-card-head">
+                <h3 data-i18n="lab.bayes.title">Teorema de Bayes</h3>
+                <span class="lab-tag">P(A|B) · prior + likelihood</span>
+              </div>
+              <p class="lab-hint" data-i18n="lab.bayes.hint">Exemplo clássico: probabilidade de ter uma doença dado teste positivo.</p>
+              <label class="lab-label">P(A) — <span data-i18n="lab.bayes.prior">probabilidade da hipótese</span></label>
+              <input type="number" id="byPA" class="lab-input" step="0.001" min="0" max="1" value="0.01" />
+              <label class="lab-label">P(B|A) — <span data-i18n="lab.bayes.tpr">sensibilidade (verdadeiro positivo)</span></label>
+              <input type="number" id="byPBA" class="lab-input" step="0.001" min="0" max="1" value="0.95" />
+              <label class="lab-label">P(B|¬A) — <span data-i18n="lab.bayes.fpr">falso positivo</span></label>
+              <input type="number" id="byPBnA" class="lab-input" step="0.001" min="0" max="1" value="0.05" />
+              <div class="cos-bar"><div class="cos-fill" id="byFill"></div></div>
+              <p class="cos-score-line">P(A|B) = <strong id="byResult">—</strong></p>
+              <p class="bayes-note" id="byNote"></p>
+            </article>
+
+          </div>
+        </div>
+
+        <button type="button" class="labs-nav labs-next" aria-label="Next">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+
+      <footer class="labs-footer">
+        <div class="labs-dots" id="labsDots"></div>
+        <span class="labs-counter"><span id="labsIdx">1</span> / <span id="labsTotal">10</span></span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
