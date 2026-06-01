@@ -4,8 +4,8 @@
 
 const translations = {
   pt: {
-    "meta.title": "Felipe Santos - Cientista de Dados",
-    "meta.description": "Felipe Santos - Cientista de Dados com foco em NLP, IA Generativa e Machine Learning.",
+    "meta.title": "Felipe Santos",
+    "meta.description": "Felipe Santos",
     "skipLink": "Pular para o conteúdo",
 
     "hero.title": "Cientista de Dados",
@@ -151,8 +151,8 @@ const translations = {
   },
 
   en: {
-    "meta.title": "Felipe Santos - Data Scientist",
-    "meta.description": "Felipe Santos - Data Scientist focused on NLP, Generative AI and Machine Learning.",
+    "meta.title": "Felipe Santos",
+    "meta.description": "Felipe Santos",
     "skipLink": "Skip to content",
 
     "hero.title": "Data Scientist",
