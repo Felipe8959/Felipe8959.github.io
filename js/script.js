@@ -81,7 +81,7 @@ const translations = {
     "stack.title": "Stack do dia a dia",
     "stack.pyEco": "Ecossistema Python:",
 
-    "about.p1": "Cientista de dados com formação em <strong>Ciência da Computação</strong> e foco no desenvolvimento de soluções analíticas completas. Tenho orgulho de transformar dados brutos e jornadas complexas em inteligência de negócio e eficiência operacional. Meu trabalho se destaca na intersecção entre a <strong>precisão estatística</strong> e a <strong>engenharia de dados</strong>, onde modelos preditivos encontram pipelines escaláveis para antecipar cenários e resolver problemas reais.",
+    "about.p1": "Formado em <strong>Ciência da Computação</strong> e foco no desenvolvimento de soluções analíticas completas. Tenho orgulho de transformar dados brutos e jornadas complexas em inteligência de negócio e eficiência operacional. Meu trabalho se destaca na intersecção entre a <strong>precisão estatística</strong> e a <strong>engenharia de dados</strong>, onde modelos preditivos encontram pipelines escaláveis para antecipar cenários e resolver problemas reais.",
     "about.p2": "Atualmente, faço parte do departamento de <strong>Ouvidoria do Banco Bradesco</strong>, onde atuo no desenvolvimento de inteligência de dados para entender a jornada do cliente, otimizar processos e ajudar os times estratégicos a atuarem de forma preditiva.",
     "about.p3": "Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-right\"></i></a>.",
 
@@ -228,7 +228,7 @@ const translations = {
     "stack.title": "Daily stack",
     "stack.pyEco": "Python ecosystem:",
 
-    "about.p1": "Data scientist with a degree in <strong>Computer Science</strong>, focused on building end-to-end analytical solutions. I take pride in turning raw data and complex journeys into business intelligence and operational efficiency. My work thrives at the intersection of <strong>statistical rigor</strong> and <strong>data engineering</strong>, where predictive models meet scalable pipelines to anticipate scenarios and solve real-world problems.",
+    "about.p1": "<strong>Computer Science</strong> graduate focused on building end-to-end analytical solutions. I take pride in turning raw data and complex journeys into business intelligence and operational efficiency. My work thrives at the intersection of <strong>statistical rigor</strong> and <strong>data engineering</strong>, where predictive models meet scalable pipelines to anticipate scenarios and solve real-world problems.",
     "about.p2": "I'm currently part of the <strong>Banco Bradesco Ombudsman</strong> department, where I develop data intelligence to understand the customer journey, optimize processes and help strategic teams act predictively.",
     "about.p3": "My journey in tech began by automating tasks with <strong>VBA and Excel</strong> at a testing laboratory. That experience showed me the power of automation and inspired me to pursue a degree in Computer Science (completed in 2025). Since then, I've been studying concepts and tools to design more robust data architectures, applying <strong>Machine Learning</strong> techniques to generate useful business information. I'm currently deepening my studies in <strong>applied statistics</strong> to further sharpen my skills in the data field. Check out recent studies in <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-right\"></i></a>.",
 
@@ -1489,6 +1489,24 @@ function initLabsModal() {
   modal.querySelectorAll('[data-labs-close]').forEach(el => el.addEventListener('click', close));
   modal.querySelector('.labs-prev').addEventListener('click', () => go(current - 1));
   modal.querySelector('.labs-next').addEventListener('click', () => go(current + 1));
+
+  // Touch swipe support (mobile carousel)
+  const viewport = modal.querySelector('.labs-viewport');
+  let touchStartX = null, touchStartY = null;
+  viewport.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    if (touchStartX == null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // ignore mostly-vertical swipes (so users can still scroll content)
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      go(current + (dx < 0 ? 1 : -1));
+    }
+    touchStartX = touchStartY = null;
+  }, { passive: true });
   dotsEl.addEventListener('click', (e) => {
     const b = e.target.closest('button[data-idx]');
     if (b) go(+b.dataset.idx);
