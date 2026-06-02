@@ -79,11 +79,12 @@ const translations = {
     "actions.viewFullResume": "Ver currículo completo",
 
     "stack.title": "Stack do dia a dia",
+    "stack.hint": "Clique em um item para ver os detalhes.",
     "stack.pyEco": "Ecossistema Python:",
 
     "about.p1": "Formado em <strong>Ciência da Computação</strong> e foco no desenvolvimento de soluções analíticas completas. Tenho orgulho de transformar dados brutos e jornadas complexas em inteligência de negócio e eficiência operacional. Meu trabalho se destaca na intersecção entre a <strong>precisão estatística</strong> e a <strong>engenharia de dados</strong>, onde modelos preditivos encontram pipelines escaláveis para antecipar cenários e resolver problemas reais.",
     "about.p2": "Atualmente, faço parte do departamento de <strong>Ouvidoria do Banco Bradesco</strong>, onde atuo no desenvolvimento de inteligência de dados para entender a jornada do cliente, otimizar processos e ajudar os times estratégicos a atuarem de forma preditiva.",
-    "about.p3": "Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-right\"></i></a>.",
+    "about.p3": "Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-up-right\"></i></a>.",
 
     "exp.r1.period": "JAN 2026 - ATUAL",
     "exp.r1.role": "Analista de Informações Gerenciais Jr.",
@@ -99,19 +100,30 @@ const translations = {
 
     "exp.r4.period": "FEV 2020 - FEV 2024",
     "exp.r4.role": "Assistente de TI",
-    "exp.r4.company": " · Iten - Instituto Tecnológico de Ensaios",
+    "exp.r4.company": " · ITEN - Instituto Tecnológico de Ensaios",
     "exp.r4.desc": "Automação de ensaios e geração de relatórios em conformidade com normas NBR, ISO e IEC. Cálculos de incerteza de medição assegurando padronização e consistência dos resultados, com foco em reduzir retrabalho, acelerar a emissão de laudos e diminuir erros nas informações.",
     "exp.r4.tag.norms": "Normas NBR / ISO / IEC",
     "exp.r4.tag.metro": "Metrologia",
 
     "exp.proj1.t": "Instância Zero",
-    "exp.proj1.d": "pipeline em PySpark/Databricks cruzando URA, totens de agências e canais digitais (BIA/chat) com a base de reclamações, reconstruindo a jornada do cliente até o ponto de reclamação. Entrega: dashboard executivo alimentado por job diário automatizado.",
-    "exp.proj2.t": "Análise de minutas regulatórias com IA Generativa (RAG)",
-    "exp.proj2.d": "web scraping de ~12 mil normativos do BACEN, ingestão no Databricks, embeddings multilingual e Vector Search para recuperar as 5 normas mais relevantes por minuta. Agente LLM avalia conformidade, gera recomendações e devolve a minuta corrigida.",
+    "exp.proj1.d": "Estudo que possibilita uma visão 360° da jornada do cliente antes de registrar uma manifestação, viabilizando estratégias preditivas para reduzir volume de reclamações e exposição em órgãos externos (Bacen, Procon, Ações Cíveis).",
+    "exp.proj1.body": "<p>Elaborado por meio de pipeline com tratamentos, cruzamentos e ingestões de dados em execução paralela, conectando informações das centrais de atendimento da URA, logs dos Totens de agências e conversas em canais digitais (BIA/chat) à base de reclamações SACL.</p><p>Com isso, é possível visualizar a jornada completa do cliente - sequência de canais percorridos desde a instância zero até órgãos externos, identificação de derivações para atendimento humano, análise de migração e vazamento entre canais, e perfilamento por dados cadastrais e segmentação bancária.</p><p class=\"bullet-result\" data-i18n=\"exp.proj1.result\"><strong>Entrega:</strong> dashboard executivo alimentados por job diário automatizado com processamento incremental.</p>",
+    "exp.proj1.result": "<strong>Entrega:</strong> dashboard executivo alimentados por job diário automatizado com processamento incremental.",
+
+    "exp.proj2.t": "Compliance regulatório - Análise de minutas",
+    "exp.proj2.d": "Solução para análise automatizada de minutas do canal BACEN, integrando web scraping, processamento de linguagem natural e arquitetura RAG.",
+    "exp.proj2.body": "<ul><li>Extração automatizada de aproximadamente 12 mil normativos do Banco Central via web scraping, com ingestão estruturada em Delta Tables.</li><li>Geração de representações semânticas dos textos normativos e criação de índice no Vector Search, permitindo recuperação das 5 normas mais relevantes para cada minuta submetida.</li><li>Orquestração de um agente que recebe a minuta, consulta a base vetorial, avalia a aderência regulatória, gera recomendações de adequação e devolve a minuta corrigida com referências normativas.</li></ul><p class=\"bullet-result\" data-i18n=\"exp.proj2.result\"><strong>Resultado:</strong> Redução do esforço manual de análise de conformidade, padronização das recomendações regulatórias e auditabilidade integral do processo decisório do agente.</p>",
+    "exp.proj2.result": "<strong>Resultado:</strong> Redução do esforço manual de análise de conformidade, padronização das recomendações regulatórias e auditabilidade integral do processo decisório do agente.",
+
     "exp.proj3.t": "Detecção de influencers",
-    "exp.proj3.d": "modelagem não supervisionada com TF-IDF + similaridade de cosseno e DBSCAN, com treino inicial em chunks e atualização incremental via artefatos versionados.",
-    "exp.proj4.t": "Classificação automática de temas Febraban",
-    "exp.proj4.d": "Random Forest mapeando temas Febraban para a categorização interna, com <strong>acurácia de 97%</strong>.",
+    "exp.proj3.d": "Detecção de padrões textuais repetitivos em reclamações oriundas do Consumidor.gov.br e BACEN, indicativos de atuação coordenada por escritórios de advocacia, assessorias ou agentes externos.",
+    "exp.proj3.body": "<p>A solução emprega modelagem não supervisionada com vetorização TF-IDF (unigramas e bigramas), similaridade de cosseno calculada em chunks para otimização de memória, e clusterização via DBSCAN com atribuição incremental a centroides existentes. O fluxo opera em dois modos - execução diária incremental (append de novos casos com janela de 180 dias) e reprocessamento completo sob demanda - com artefatos versionados (vectorizer, centroides, scaler) e tabela de controle de execuções. Entregue um dashboard de monitoramento diário para as áreas atuarem.</p><p class=\"bullet-result\" data-i18n=\"exp.proj3.result\"><strong>Resultado:</strong> Ao saber que um cluster com x protocolos compartilha o mesmo padrão textual e provável origem comum, a área pode definir uma resposta institucional unificada ao invés de tratar caso a caso, otimizando esforço operacional.</p>",
+    "exp.proj3.result": "<strong>Resultado:</strong> Ao saber que um cluster com x protocolos compartilha o mesmo padrão textual e provável origem comum, a área pode definir uma resposta institucional unificada ao invés de tratar caso a caso, otimizando esforço operacional.",
+
+    "exp.proj4.t": "Classificação Automática de Temas FEBRABAN",
+    "exp.proj4.d": "Desenvolvimento e implantação de modelo para classificação automática de reclamações internas na taxonomia FEBRABAN, substituindo processo manual previamente executado por analista especializado da equipe de dados.",
+    "exp.proj4.body": "<p>O processo anterior dependia de mapeamento visual - o analista avaliava individualmente cada categorização interna das reclamações e determinava, com base em sua experiência, a correspondência mais adequada com as categorias FEBRABAN. Essa abordagem, além de consumir horas de trabalho qualificado, concentrava conhecimento crítico em uma única pessoa e não escalava com o crescimento do volume.</p><p>A solução utiliza o histórico de classificações realizadas por esse analista como base de treino para um modelo Random Forest, capturando os padrões de decisão acumulados ao longo do tempo. O modelo resultante atinge <strong>acurácia de 97%</strong>, reproduzindo com alta fidelidade o julgamento especializado.</p>",
+    "exp.proj4.result": "",
     "exp.proj5.t": "Análise estatística de reclamações BACEN",
     "exp.proj5.d": "qui-quadrado sobre textos procedentes vs. improcedentes para identificar unigramas e bigramas mais associados à procedência.",
     "exp.proj6.t": "Fluxos automatizados",
@@ -226,11 +238,12 @@ const translations = {
     "actions.viewFullResume": "View full resume",
 
     "stack.title": "Daily stack",
+    "stack.hint": "Click an item to see the details.",
     "stack.pyEco": "Python ecosystem:",
 
     "about.p1": "<strong>Computer Science</strong> graduate focused on building end-to-end analytical solutions. I take pride in turning raw data and complex journeys into business intelligence and operational efficiency. My work thrives at the intersection of <strong>statistical rigor</strong> and <strong>data engineering</strong>, where predictive models meet scalable pipelines to anticipate scenarios and solve real-world problems.",
     "about.p2": "I'm currently part of the <strong>Banco Bradesco Ombudsman</strong> department, where I develop data intelligence to understand the customer journey, optimize processes and help strategic teams act predictively.",
-    "about.p3": "My journey in tech began by automating tasks with <strong>VBA and Excel</strong> at a testing laboratory. That experience showed me the power of automation and inspired me to pursue a degree in Computer Science (completed in 2025). Since then, I've been studying concepts and tools to design more robust data architectures, applying <strong>Machine Learning</strong> techniques to generate useful business information. I'm currently deepening my studies in <strong>applied statistics</strong> to further sharpen my skills in the data field. Check out recent studies in <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-right\"></i></a>.",
+    "about.p3": "My journey in tech began by automating tasks with <strong>VBA and Excel</strong> at a testing laboratory. That experience showed me the power of automation and inspired me to pursue a degree in Computer Science (completed in 2025). Since then, I've been studying concepts and tools to design more robust data architectures, applying <strong>Machine Learning</strong> techniques to generate useful business information. I'm currently deepening my studies in <strong>applied statistics</strong> to further sharpen my skills in the data field. Check out recent studies in <a href=\"#\" data-action=\"open-labs\" class=\"about-labs-link\">Labs<i class=\"bi bi-arrow-up-right\"></i></a>.",
 
     "exp.r1.period": "JAN 2026 - PRESENT",
     "exp.r1.role": "Jr. Management Information Analyst",
@@ -246,19 +259,30 @@ const translations = {
 
     "exp.r4.period": "FEB 2020 - FEB 2024",
     "exp.r4.role": "IT Assistant",
-    "exp.r4.company": " · Iten - Technological Testing Institute",
+    "exp.r4.company": " · ITEN - Technological Testing Institute",
     "exp.r4.desc": "Automation of laboratory tests and report generation in compliance with NBR, ISO and IEC standards. Measurement-uncertainty calculations ensuring standardization and consistency of results, focused on reducing rework, accelerating report issuance and minimizing errors.",
     "exp.r4.tag.norms": "NBR / ISO / IEC Standards",
     "exp.r4.tag.metro": "Metrology",
 
     "exp.proj1.t": "Instance Zero",
-    "exp.proj1.d": "PySpark/Databricks pipeline cross-referencing IVR, branch kiosk and digital channel (BIA/chat) data with the complaints base, reconstructing the customer journey up to the complaint event. Delivery: an executive dashboard fed by an automated daily job.",
-    "exp.proj2.t": "Regulatory draft analysis with Generative AI (RAG)",
-    "exp.proj2.d": "web scraping of ~12k BACEN regulations, ingestion on Databricks, multilingual embeddings and Vector Search to retrieve the top-5 most relevant rules per draft. An LLM agent assesses compliance, generates recommendations and returns the corrected draft.",
+    "exp.proj1.d": "Study that enables a 360° view of the customer journey before a complaint is filed, supporting predictive strategies to reduce complaint volume and exposure to external bodies (Bacen, Procon, civil lawsuits).",
+    "exp.proj1.body": "<p>Built on a pipeline with parallel-execution data treatments, cross-references and ingestions, connecting IVR contact-center data, branch kiosk logs and digital-channel conversations (BIA/chat) to the SACL complaints base.</p><p>Reveals the full customer journey — the sequence of channels visited from the first interaction up to external bodies, identification of human-handover branches, channel migration and leakage analysis, plus profiling by demographics and banking segmentation.</p><p class=\"bullet-result\" data-i18n=\"exp.proj1.result\"><strong>Delivery:</strong> executive dashboards fed by an automated daily job with incremental processing.</p>",
+    "exp.proj1.result": "<strong>Delivery:</strong> executive dashboards fed by an automated daily job with incremental processing.",
+
+    "exp.proj2.t": "Regulatory compliance - Draft analysis",
+    "exp.proj2.d": "Solution for automated analysis of BACEN-channel drafts, integrating web scraping, natural language processing and a RAG architecture.",
+    "exp.proj2.body": "<ul><li>Automated extraction of approximately 12,000 Central Bank regulations via web scraping, with structured ingestion into Delta Tables.</li><li>Generation of semantic representations of the regulatory texts and creation of a Vector Search index, allowing retrieval of the 5 most relevant rules for each submitted draft.</li><li>Orchestration of an agent that receives the draft, queries the vector base, assesses regulatory adherence, generates recommendations and returns the corrected draft with regulatory references.</li></ul><p class=\"bullet-result\" data-i18n=\"exp.proj2.result\"><strong>Result:</strong> reduction of manual compliance-analysis effort, standardization of regulatory recommendations and full auditability of the agent's decision process.</p>",
+    "exp.proj2.result": "<strong>Result:</strong> reduction of manual compliance-analysis effort, standardization of regulatory recommendations and full auditability of the agent's decision process.",
+
     "exp.proj3.t": "Influencer detection",
-    "exp.proj3.d": "unsupervised modeling with TF-IDF + cosine similarity and DBSCAN, with chunked initial training and incremental updates via versioned artifacts.",
-    "exp.proj4.t": "Automatic classification of Febraban topics",
-    "exp.proj4.d": "Random Forest mapping Febraban topics to internal categorization, with <strong>97% accuracy</strong>.",
+    "exp.proj3.d": "Detection of repetitive textual patterns in complaints originating from Consumidor.gov.br and BACEN, indicating coordinated activity by law firms, advisors or external agents.",
+    "exp.proj3.body": "<p>The solution employs unsupervised modeling with TF-IDF vectorization (unigrams and bigrams), cosine similarity computed in chunks for memory optimization, and DBSCAN clustering with incremental assignment to existing centroids. The pipeline operates in two modes - daily incremental run (appending new cases over a 180-day window) and full reprocessing on demand - with versioned artifacts (vectorizer, centroids, scaler) and an execution-control table. Delivers a daily monitoring dashboard for the operating teams.</p><p class=\"bullet-result\" data-i18n=\"exp.proj3.result\"><strong>Result:</strong> once we know a cluster of x protocols shares the same textual pattern and a likely common origin, the team can define a unified institutional response instead of handling each case individually, optimizing operational effort.</p>",
+    "exp.proj3.result": "<strong>Result:</strong> once we know a cluster of x protocols shares the same textual pattern and a likely common origin, the team can define a unified institutional response instead of handling each case individually, optimizing operational effort.",
+
+    "exp.proj4.t": "Automatic Classification of FEBRABAN Topics",
+    "exp.proj4.d": "Development and deployment of a model for automatic classification of internal complaints into the FEBRABAN taxonomy, replacing a manual process previously performed by a specialist analyst on the data team.",
+    "exp.proj4.body": "<p>The previous process relied on visual mapping - the analyst individually assessed each internal complaint categorization and determined, based on their experience, the most appropriate match with the FEBRABAN categories. Beyond consuming hours of qualified work, this approach concentrated critical knowledge in a single person and did not scale with growing volume.</p><p>The solution uses the analyst's classification history as training data for a Random Forest model, capturing the decision patterns accumulated over time. The resulting model achieves <strong>97% accuracy</strong>, faithfully reproducing the specialist's judgment.</p>",
+    "exp.proj4.result": "",
     "exp.proj5.t": "BACEN complaints - statistical analysis",
     "exp.proj5.d": "chi-square tests on valid vs. invalid complaint texts to identify the unigrams and bigrams most associated with validity.",
     "exp.proj6.t": "Automated workflows",
@@ -624,6 +648,47 @@ function initNetworkBg() {
     window.removeEventListener('mouseleave', onMouseLeave);
     ctx.clearRect(0, 0, width, height);
   };
+}
+
+/* ---------- Stack showcase (clickable chips → expandable panels) ---------- */
+function initStackShowcase() {
+  const chips = document.querySelectorAll('.stack-chip[data-stack]');
+  const panels = document.querySelectorAll('.stack-panel[data-panel]');
+  if (!chips.length) return;
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const key = chip.dataset.stack;
+      const isOpen = chip.classList.contains('is-active');
+      // Close everything
+      chips.forEach((c) => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-expanded', 'false');
+      });
+      panels.forEach((p) => p.classList.remove('is-active'));
+      panels.forEach((p) => { if (p.dataset.panel) p.hidden = true; });
+      // Toggle (clicking the active one closes it)
+      if (!isOpen) {
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-expanded', 'true');
+        const panel = document.querySelector(`.stack-panel[data-panel="${key}"]`);
+        if (panel) { panel.hidden = false; panel.classList.add('is-active'); }
+      }
+    });
+  });
+}
+
+/* ---------- Back-to-top button ---------- */
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+  function onScroll() {
+    btn.classList.toggle('is-visible', window.scrollY > 400);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  onScroll();
 }
 
 /* ---------- Scroll progress bar ---------- */
@@ -1522,6 +1587,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initRevealOnScroll();
   initCursorGlow();
   initLabsModal();
+  initStackShowcase();
+  initBackToTop();
   // Rich-mode features (always on now — toggle removed from UI)
   initNetworkBg();
   initRoleTyper();

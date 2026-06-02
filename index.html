@@ -49,6 +49,11 @@
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
+  <!-- Back-to-top button (appears after scrolling) -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
   <!-- Network/scatter background canvas -->
   <canvas class="network-bg" id="networkBg" aria-hidden="true"></canvas>
 
@@ -139,7 +144,7 @@
               Atualmente, faço parte do departamento de <strong>Ouvidoria do Banco Bradesco</strong>, onde atuo no desenvolvimento de inteligência de dados para entender a jornada do cliente, otimizar processos e ajudar os times estratégicos a atuarem de forma preditiva.
             </p>
             <p data-i18n="about.p3">
-              Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href="#" data-action="open-labs" class="about-labs-link">Labs<i class="bi bi-arrow-right"></i></a>.
+              Minha jornada na tecnologia começou automatizando tarefas com <strong>VBA e Excel</strong> em um laboratório de ensaios. Essa experiência me mostrou o poder da automação e me inspirou a cursar a graduação em Ciência da Computação (concluída em 2025). Desde então, passei a estudar conceitos e ferramentas para projetar arquiteturas de dados mais robustas, aplicando técnicas de <strong>Machine Learning</strong> para gerar informações úteis para o negócio. Atualmente, estou aprofundando meus estudos em <strong>estatística aplicada</strong> para aprimorar ainda mais minhas habilidades na área de dados. Confira estudos recentes em <a href="#" data-action="open-labs" class="about-labs-link">Labs<i class="bi bi-arrow-up-right"></i></a>.
             </p>
           </div>
 
@@ -172,8 +177,33 @@
                   Projetos com IA Generativa, estudos mais aprofundados e analytics estratégicos para Ouvidoria, com reporte para outros departamentos.
                 </p>
                 <ul class="bullets">
-                  <li><strong data-i18n="exp.proj1.t">Instância Zero</strong> - <span data-i18n="exp.proj1.d">pipeline em PySpark/Databricks cruzando URA, totens de agências e canais digitais (BIA/chat) com a base de reclamações, reconstruindo a jornada do cliente até o ponto de reclamação. Entrega: dashboard executivo alimentado por job diário automatizado.</span></li>
-                  <li><strong data-i18n="exp.proj2.t">Análise de minutas regulatórias com IA Generativa (RAG)</strong> - <span data-i18n="exp.proj2.d">web scraping de ~12 mil normativos do BACEN, ingestão no Databricks, embeddings multilingual e Vector Search para recuperar as 5 normas mais relevantes por minuta. Agente LLM avalia conformidade, gera recomendações e devolve a minuta corrigida.</span></li>
+                  <li>
+                    <details class="bullet-detail" open>
+                      <summary>
+                        <strong data-i18n="exp.proj1.t">Instância Zero</strong> - <span data-i18n="exp.proj1.d">Estudo que possibilita uma visão 360° da jornada do cliente antes de registrar uma manifestação, viabilizando estratégias preditivas para reduzir volume de reclamações e exposição em órgãos externos (Bacen, Procon, Ações Cíveis).</span>
+                      </summary>
+                      <div class="bullet-body" data-i18n="exp.proj1.body">
+                        <p>Elaborado por meio de pipeline com tratamentos, cruzamentos e ingestões de dados em execução paralela, conectando informações das centrais de atendimento da URA, logs dos Totens de agências e conversas em canais digitais (BIA/chat) à base de reclamações SACL.</p>
+                        <p>Com isso, é possível visualizar a jornada completa do cliente - sequência de canais percorridos desde a instância zero até órgãos externos, identificação de derivações para atendimento humano, análise de migração e vazamento entre canais, e perfilamento por dados cadastrais e segmentação bancária.</p>
+                        <p class="bullet-result" data-i18n="exp.proj1.result"><strong>Entrega:</strong> dashboard executivo alimentados por job diário automatizado com processamento incremental.</p>
+                      </div>
+                    </details>
+                  </li>
+                  <li>
+                    <details class="bullet-detail" open>
+                      <summary>
+                        <strong data-i18n="exp.proj2.t">Compliance regulatório - Análise de minutas</strong> - <span data-i18n="exp.proj2.d">Solução para análise automatizada de minutas do canal BACEN, integrando web scraping, processamento de linguagem natural e arquitetura RAG.</span>
+                      </summary>
+                      <div class="bullet-body" data-i18n="exp.proj2.body">
+                        <ul>
+                          <li>Extração automatizada de aproximadamente 12 mil normativos do Banco Central via web scraping, com ingestão estruturada em Delta Tables.</li>
+                          <li>Geração de representações semânticas dos textos normativos e criação de índice no Vector Search, permitindo recuperação das 5 normas mais relevantes para cada minuta submetida.</li>
+                          <li>Orquestração de um agente que recebe a minuta, consulta a base vetorial, avalia a aderência regulatória, gera recomendações de adequação e devolve a minuta corrigida com referências normativas.</li>
+                        </ul>
+                        <p class="bullet-result" data-i18n="exp.proj2.result"><strong>Resultado:</strong> Redução do esforço manual de análise de conformidade, padronização das recomendações regulatórias e auditabilidade integral do processo decisório do agente.</p>
+                      </div>
+                    </details>
+                  </li>
                 </ul>
                 <ul class="tag-list">
                   <li>Databricks</li><li>Lakeflow Jobs</li><li>Multithreading</li>
@@ -202,7 +232,17 @@
                   Modelagem em NLP não supervisionada e engenharia de dados sobre arquitetura Medallion, com atualização incremental e ingestão automatizada de dados regulatórios.
                 </p>
                 <ul class="bullets">
-                  <li><strong data-i18n="exp.proj3.t">Detecção de influencers</strong> - <span data-i18n="exp.proj3.d">modelagem não supervisionada com TF-IDF + similaridade de cosseno e DBSCAN, com treino inicial em chunks e atualização incremental via artefatos versionados.</span></li>
+                  <li>
+                    <details class="bullet-detail" open>
+                      <summary>
+                        <strong data-i18n="exp.proj3.t">Detecção de influencers</strong> - <span data-i18n="exp.proj3.d">Detecção de padrões textuais repetitivos em reclamações oriundas do Consumidor.gov.br e BACEN, indicativos de atuação coordenada por escritórios de advocacia, assessorias ou agentes externos.</span>
+                      </summary>
+                      <div class="bullet-body" data-i18n="exp.proj3.body">
+                        <p>A solução emprega modelagem não supervisionada com vetorização TF-IDF (unigramas e bigramas), similaridade de cosseno calculada em chunks para otimização de memória, e clusterização via DBSCAN com atribuição incremental a centroides existentes. O fluxo opera em dois modos - execução diária incremental (append de novos casos com janela de 180 dias) e reprocessamento completo sob demanda - com artefatos versionados (vectorizer, centroides, scaler) e tabela de controle de execuções. Entregue um dashboard de monitoramento diário para as áreas atuarem.</p>
+                        <p class="bullet-result" data-i18n="exp.proj3.result"><strong>Resultado:</strong> Ao saber que um cluster com x protocolos compartilha o mesmo padrão textual e provável origem comum, a área pode definir uma resposta institucional unificada ao invés de tratar caso a caso, otimizando esforço operacional.</p>
+                      </div>
+                    </details>
+                  </li>
                   <li><strong data-i18n="exp.proj6.t">Fluxos automatizados</strong> - <span data-i18n="exp.proj6.d">pipelines em arquitetura Medallion (bronze/silver/gold) no Databricks; automação da ingestão de dados regulatórios do BACEN.</span></li>
                 </ul>
                 <ul class="tag-list">
@@ -232,7 +272,17 @@
                   Início da carreira em dados: classificação supervisionada e estatística inferencial aplicada a textos de reclamações.
                 </p>
                 <ul class="bullets">
-                  <li><strong data-i18n="exp.proj4.t">Classificação automática de temas Febraban</strong> - <span data-i18n="exp.proj4.d">Random Forest mapeando temas Febraban para a categorização interna, com <strong>acurácia de 97%</strong>.</span></li>
+                  <li>
+                    <details class="bullet-detail" open>
+                      <summary>
+                        <strong data-i18n="exp.proj4.t">Classificação Automática de Temas FEBRABAN</strong> - <span data-i18n="exp.proj4.d">Desenvolvimento e implantação de modelo para classificação automática de reclamações internas na taxonomia FEBRABAN, substituindo processo manual previamente executado por analista especializado da equipe de dados.</span>
+                      </summary>
+                      <div class="bullet-body" data-i18n="exp.proj4.body">
+                        <p>O processo anterior dependia de mapeamento visual - o analista avaliava individualmente cada categorização interna das reclamações e determinava, com base em sua experiência, a correspondência mais adequada com as categorias FEBRABAN. Essa abordagem, além de consumir horas de trabalho qualificado, concentrava conhecimento crítico em uma única pessoa e não escalava com o crescimento do volume.</p>
+                        <p>A solução utiliza o histórico de classificações realizadas por esse analista como base de treino para um modelo Random Forest, capturando os padrões de decisão acumulados ao longo do tempo. O modelo resultante atinge <strong>acurácia de 97%</strong>, reproduzindo com alta fidelidade o julgamento especializado.</p>
+                      </div>
+                    </details>
+                  </li>
                   <li><strong data-i18n="exp.proj5.t">Análise estatística de reclamações BACEN</strong> - <span data-i18n="exp.proj5.d">qui-quadrado sobre textos procedentes vs. improcedentes para identificar unigramas e bigramas mais associados à procedência.</span></li>
                   <li><strong data-i18n="exp.proj7.t">Automações</strong> - <span data-i18n="exp.proj7.d">criação e manutenção de scripts em Python utilizados por diversas equipes (distribuição automática de demandas, envio de e-mails, web scraping e outras rotinas internas).</span></li>
                 </ul>
@@ -254,10 +304,11 @@
               </div>
               <div class="card-body">
                 <h3 class="card-title">
-                  <span>
+                  <a href="https://www.itensp.com.br/" target="_blank" rel="noopener">
                     <span data-i18n="exp.r4.role">Assistente de TI</span>
-                    <span class="card-sub" data-i18n="exp.r4.company"> · Iten - Instituto Tecnológico de Ensaios</span>
-                  </span>
+                    <span class="card-sub" data-i18n="exp.r4.company"> · ITEN - Instituto Tecnológico de Ensaios</span>
+                    <i class="bi bi-arrow-up-right"></i>
+                  </a>
                 </h3>
                 <p class="card-desc" data-i18n="exp.r4.desc">
                   Automação de ensaios e geração de relatórios em conformidade com normas NBR, ISO e IEC. Cálculos de incerteza de medição assegurando padronização e consistência dos resultados, com foco em reduzir retrabalho, acelerar a emissão de laudos e diminuir erros nas informações.
@@ -373,48 +424,89 @@
             <h2 id="sk-h" class="section-title-mobile" data-i18n="nav.skills">Skills</h2>
           </div>
 
-          <!-- Stack showcase — daily tools above the skills grid -->
+          <!-- Stack showcase — clickable chips above the skills grid -->
           <div class="stack-showcase" aria-label="Stack do dia a dia">
             <p class="stack-showcase-title" data-i18n="stack.title">Stack do dia a dia</p>
-            <div class="stack-main">
-              <div class="stack-chip" title="Databricks">
+            <p class="stack-showcase-hint" data-i18n="stack.hint">Clique em um item para ver os detalhes.</p>
+
+            <div class="stack-main" role="tablist">
+              <button class="stack-chip" type="button" data-stack="databricks" aria-expanded="false">
                 <img src="https://cdn.simpleicons.org/databricks" alt="" onerror="this.style.display='none'" />
                 <span>Databricks</span>
-              </div>
-              <div class="stack-chip" title="SQL">
+                <i class="bi bi-chevron-down stack-caret" aria-hidden="true"></i>
+              </button>
+              <button class="stack-chip" type="button" data-stack="sql" aria-expanded="false">
                 <i class="bi bi-database-fill" aria-hidden="true"></i>
                 <span>SQL</span>
-              </div>
-              <div class="stack-chip" title="MLflow">
+                <i class="bi bi-chevron-down stack-caret" aria-hidden="true"></i>
+              </button>
+              <span class="stack-chip stack-chip--static">
                 <img src="https://cdn.simpleicons.org/mlflow" alt="" onerror="this.style.display='none'" />
                 <span>MLflow</span>
-              </div>
-              <div class="stack-chip" title="H2O.ai">
+              </span>
+              <span class="stack-chip stack-chip--static">
                 <i class="bi bi-droplet-fill" aria-hidden="true"></i>
                 <span>H2O.ai</span>
-              </div>
-              <div class="stack-chip stack-chip--featured" title="Python">
+              </span>
+              <button class="stack-chip stack-chip--featured is-active" type="button" data-stack="python" aria-expanded="true">
                 <img src="https://cdn.simpleicons.org/python" alt="" onerror="this.style.display='none'" />
                 <span>Python</span>
-              </div>
+                <i class="bi bi-chevron-down stack-caret" aria-hidden="true"></i>
+              </button>
+              <button class="stack-chip" type="button" data-stack="excel" aria-expanded="false">
+                <i class="bi bi-file-earmark-spreadsheet-fill" aria-hidden="true"></i>
+                <span>Excel</span>
+                <i class="bi bi-chevron-down stack-caret" aria-hidden="true"></i>
+              </button>
             </div>
 
-            <div class="stack-python">
-              <span class="stack-python-label" data-i18n="stack.pyEco">Ecossistema Python:</span>
+            <!-- Panels -->
+            <div class="stack-panel" data-panel="databricks" hidden>
+              <span class="stack-pill">Delta Lake</span>
+              <span class="stack-pill">Jobs / Workflows</span>
+              <span class="stack-pill">Multithreading</span>
+              <span class="stack-pill">Optimization</span>
+              <span class="stack-pill">Model Serving</span>
+              <span class="stack-pill">Alerts</span>
+              <span class="stack-pill">Notebooks</span>
+              <span class="stack-pill">Queries</span>
+            </div>
+            <div class="stack-panel" data-panel="sql" hidden>
+              <span class="stack-pill">Particionamento</span>
+              <span class="stack-pill">Subqueries</span>
+              <span class="stack-pill">CTEs</span>
+              <span class="stack-pill">Window Functions</span>
+              <span class="stack-pill">Joins complexos</span>
+              <span class="stack-pill">Otimização de queries</span>
+            </div>
+            <div class="stack-panel is-active" data-panel="python">
               <span class="stack-pill"><img src="https://cdn.simpleicons.org/scikitlearn" alt="" onerror="this.style.display='none'" />scikit-learn</span>
+              <span class="stack-pill"><img src="https://cdn.simpleicons.org/apachespark" alt="" onerror="this.style.display='none'" />PySpark</span>
               <span class="stack-pill"><i class="bi bi-graph-up" aria-hidden="true"></i>matplotlib</span>
               <span class="stack-pill"><img src="https://cdn.simpleicons.org/numpy" alt="" onerror="this.style.display='none'" />NumPy</span>
               <span class="stack-pill"><img src="https://cdn.simpleicons.org/pandas" alt="" onerror="this.style.display='none'" />pandas</span>
               <span class="stack-pill"><img src="https://cdn.simpleicons.org/langchain" alt="" onerror="this.style.display='none'" />LangChain</span>
               <span class="stack-pill"><img src="https://cdn.simpleicons.org/streamlit" alt="" onerror="this.style.display='none'" />Streamlit</span>
             </div>
+            <div class="stack-panel" data-panel="excel" hidden>
+              <span class="stack-pill">Tabela Dinâmica</span>
+              <span class="stack-pill">Fórmulas</span>
+              <span class="stack-pill">VBA</span>
+              <span class="stack-pill">Macros</span>
+              <span class="stack-pill">Power Query</span>
+              <span class="stack-pill">Validação de Dados</span>
+              <span class="stack-pill">Formatação Condicional</span>
+            </div>
           </div>
 
           <div class="skills-grid">
             <div class="skill-block">
-              <h4 data-i18n="skills.langs">Linguagens &amp; libs</h4>
+              <h4 data-i18n="skills.stats">Estatística</h4>
               <ul class="tag-list">
-                <li>Python</li><li>SQL</li><li>PySpark</li><li>Scikit-Learn</li><li>Pandas</li><li>NumPy</li>
+                <li data-i18n="skills.stats.ht">Testes de Hipóteses</li>
+                <li>Qui-quadrado</li><li>p-valor</li>
+                <li data-i18n="skills.stats.corr">Correlação (Pearson)</li>
+                <li data-i18n="skills.stats.ts">Séries Temporais</li>
               </ul>
             </div>
             <div class="skill-block">
@@ -435,23 +527,6 @@
                 <li>Vector Search</li><li>RAG</li>
                 <li data-i18n="skills.nlp.agents">Agentes LLM</li>
                 <li data-i18n="skills.nlp.scrape">Web Scraping</li>
-              </ul>
-            </div>
-            <div class="skill-block">
-              <h4 data-i18n="skills.stats">Estatística</h4>
-              <ul class="tag-list">
-                <li data-i18n="skills.stats.ht">Testes de Hipóteses</li>
-                <li>Qui-quadrado</li><li>p-valor</li>
-                <li data-i18n="skills.stats.corr">Correlação (Pearson)</li>
-                <li data-i18n="skills.stats.ts">Séries Temporais</li>
-              </ul>
-            </div>
-            <div class="skill-block">
-              <h4 data-i18n="skills.platforms">Plataformas</h4>
-              <ul class="tag-list">
-                <li>Databricks</li><li>Vector Search</li><li>Databricks Jobs</li>
-                <li>Azure</li><li>Power BI</li><li>H2O.ai (AutoML)</li>
-                <li data-i18n="skills.platforms.excel">Excel Avançado</li>
               </ul>
             </div>
             <div class="skill-block cert-block">
